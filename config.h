@@ -65,6 +65,8 @@ static const char *mutecmd[] = { "amixer", "-q", "set", "Master", "toggle", NULL
 static const char *volupcmd[] = { "amixer", "-q", "set", "Master", "5%+", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "set", "Master", "5%-", "unmute", NULL };
 static const char *miccmd[] = { "amixer", "set", "Capture", "toggle", NULL };
+static const char *disableTouchpadcmd[] = { "synclient", "TouchpadOff=1", NULL };
+static const char *enableTouchpadcmd[] = { "synclient", "TouchpadOff=0", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -83,6 +85,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_x,      spawn,          {.v = enableTouchpadcmd } },
+	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = disableTouchpadcmd } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
